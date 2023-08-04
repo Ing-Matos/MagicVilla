@@ -11,11 +11,20 @@ namespace MagicVilla_API.Controllers
 	[ApiController]
 	public class VillaController : ControllerBase
 	{
-		[HttpGet]
+		public ILogger<VillaController> _Logger { get; }
+
+		public VillaController(ILogger<VillaController> logger)
+        {
+			_Logger = logger;
+		}
+
+        [HttpGet]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public ActionResult<IEnumerable<VillaDto>> GetVillas()
 		{
+			_Logger.LogInformation("Obteniendo villas");
+
 			if (VillaStore.villasDtos == null)
 			{
 				return NotFound();

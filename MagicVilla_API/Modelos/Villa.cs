@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MagicVilla_API.Modelos
 {
 	public class Villa
 	{
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        // Esto hace que el campo ID sea incrementable de 1 en 1
         public int Id { get; set; }
 		public string? Nombre { get; set; }
 
